@@ -15,6 +15,8 @@
 #include <HAL/HAL.h>
 #include <HAL/Timer.h>
 
+#define FPS_30 100000
+
 extern const Graphics_Image * const frames[];
 extern const uint32_t frames_count;
 
@@ -37,6 +39,23 @@ void initGraphics(Graphics_Context *g_sContext_p)
     Graphics_clearDisplay(g_sContext_p);
 }
 
+void playVideo(Graphics_Context *g_sContext_p) {
+    Timer32_setCount(TIMER32_0_BASE, FPS_30);
+    Timer32_startTimer(TIMER32_0_BASE, true);
+
+    int i = 0;
+    while (i < frames_count) {
+        if (Timer32_getValue(TIMER32_0_BASE) == 0) {
+            Graphics_drawImage(g_sContext_p, frames[i], 0, 0);
+            i++;
+
+            // since the timer is in one-shot mode, we have to restart it to get a periodic behavior
+            Timer32_setCount(TIMER32_0_BASE, FPS_30);
+            Timer32_startTimer(TIMER32_0_BASE, true);
+        }
+    }
+}
+
 int main(void)
 {
     // Stop Watchdog Timer - THIS SHOULD ALWAYS BE THE FIRST LINE OF MAIN
@@ -50,13 +69,20 @@ int main(void)
     Graphics_Context g_sContext;
     initGraphics(&g_sContext);
 
-    Graphics_drawLineH(&g_sContext, 0, 127, 64);
+    Timer32_initModule(TIMER32_0_BASE, // There are two timers, we are using the one with the index 0
+                       TIMER32_PRESCALER_1, // The prescaler value is 1; The clock is not divided before feeding the counter
+                       TIMER32_32BIT, // The counter is used in 32-bit mode; the alternative is 16-bit mode
+                       TIMER32_PERIODIC_MODE); //This options is irrelevant for a one-shot timer
+
+    Graphics_drawString(&g_sContext, "Press button", -1, 30, 60, false);
+    Graphics_drawString(&g_sContext, "to play", -1, 37, 70, false);
 
     while (1) {
         HAL_refresh(&hal);
 
         if (Button_isPressed(&hal.boosterpackS1)) {
-
+            playVideo(&g_sContext);
+            break;
         }
     }
 }
