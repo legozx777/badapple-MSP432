@@ -46,7 +46,7 @@ void playVideo(Graphics_Context *g_sContext_p) {
     int i = 0;
     while (i < frames_count) {
         if (Timer32_getValue(TIMER32_0_BASE) == 0) {
-            Graphics_drawImage(g_sContext_p, frames_get_frame(i), 0, 0);
+            Graphics_drawImage(g_sContext_p, frames_get_frame(i), 32, 32);
             i++;
 
             // since the timer is in one-shot mode, we have to restart it to get a periodic behavior
