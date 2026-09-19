@@ -15,6 +15,9 @@
 #include <HAL/HAL.h>
 #include <HAL/Timer.h>
 
+extern const Graphics_Image * const frames[];
+extern const uint32_t frames_count;
+
 void initGraphics(Graphics_Context *g_sContext_p)
 {
     // initializing the display
