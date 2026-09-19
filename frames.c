@@ -1,3 +1,5 @@
+#include <ti/grlib/grlib.h>
+
 static const uint32_t palette_all_1BPP_UNCOMP[] = {
     0x000000, 0xffffff
 };
