@@ -233967,7 +233967,7 @@ static const FrameRun frames_table[] = {
 
 static const uint32_t frames_run_count = sizeof(frames_table) / sizeof(frames_table[0]);
 
-const uint32_t frames_count = 6572;
+const uint32_t frames128_count = 6572;
 
 static uint8_t frames_decode_buffer[2048];
 
@@ -234000,7 +234000,7 @@ static void frames_rle_decode(const uint8_t *rle, uint16_t rle_len, uint8_t *out
     }
 }
 
-const Graphics_Image *frames_get_frame(uint32_t index) {
+const Graphics_Image *frames128_get_frame(uint32_t index) {
     uint32_t remaining = index;
     uint32_t i;
     for (i = 0; i < frames_run_count; i++) {
