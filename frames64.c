@@ -117288,6 +117288,8 @@ static const FrameRun frames_table[] = {
     { frame_1097_rle, sizeof(frame_1097_rle), 1 },
     { frame_1098_rle, sizeof(frame_1098_rle), 1 },
     { frame_1099_rle, sizeof(frame_1099_rle), 1 },
+};
+static const FrameRun frames_table1[] = {
     { frame_1100_rle, sizeof(frame_1100_rle), 1 },
     { frame_1101_rle, sizeof(frame_1101_rle), 1 },
     { frame_1102_rle, sizeof(frame_1102_rle), 1 },
@@ -118388,6 +118390,8 @@ static const FrameRun frames_table[] = {
     { frame_2197_rle, sizeof(frame_2197_rle), 1 },
     { frame_2198_rle, sizeof(frame_2198_rle), 1 },
     { frame_2199_rle, sizeof(frame_2199_rle), 1 },
+};
+static const FrameRun frames_table2[] = {
     { frame_2200_rle, sizeof(frame_2200_rle), 1 },
     { frame_2201_rle, sizeof(frame_2201_rle), 1 },
     { frame_2202_rle, sizeof(frame_2202_rle), 1 },
@@ -119444,6 +119448,8 @@ static const FrameRun frames_table[] = {
     { frame_3297_rle, sizeof(frame_3297_rle), 1 },
     { frame_3298_rle, sizeof(frame_3298_rle), 1 },
     { frame_3299_rle, sizeof(frame_3299_rle), 1 },
+};
+static const FrameRun frames_table3[] = {
     { frame_3300_rle, sizeof(frame_3300_rle), 1 },
     { frame_3301_rle, sizeof(frame_3301_rle), 1 },
     { frame_3302_rle, sizeof(frame_3302_rle), 1 },
@@ -120512,6 +120518,8 @@ static const FrameRun frames_table[] = {
     { frame_4397_rle, sizeof(frame_4397_rle), 1 },
     { frame_4398_rle, sizeof(frame_4398_rle), 1 },
     { frame_4399_rle, sizeof(frame_4399_rle), 1 },
+};
+static const FrameRun frames_table4[] = {
     { frame_4400_rle, sizeof(frame_4400_rle), 1 },
     { frame_4401_rle, sizeof(frame_4401_rle), 1 },
     { frame_4402_rle, sizeof(frame_4402_rle), 1 },
@@ -121598,6 +121606,8 @@ static const FrameRun frames_table[] = {
     { frame_5497_rle, sizeof(frame_5497_rle), 1 },
     { frame_5498_rle, sizeof(frame_5498_rle), 1 },
     { frame_5499_rle, sizeof(frame_5499_rle), 1 },
+};
+static const FrameRun frames_table5[] = {
     { frame_5500_rle, sizeof(frame_5500_rle), 1 },
     { frame_5501_rle, sizeof(frame_5501_rle), 1 },
     { frame_5502_rle, sizeof(frame_5502_rle), 1 },
@@ -122616,8 +122626,6 @@ static const FrameRun frames_table[] = {
     { frame_0000_rle, sizeof(frame_0000_rle), 57 },
 };
 
-static const uint32_t frames_run_count = sizeof(frames_table) / sizeof(frames_table[0]);
-
 const uint32_t frames64_count = 6572;
 
 static uint8_t frames_decode_buffer[512];
@@ -122650,6 +122658,8 @@ static void frames_rle_decode(const uint8_t *rle, uint16_t rle_len, uint8_t *out
         color = (uint8_t)(1 - color);
     }
 }
+
+static const uint32_t frames_run_count = sizeof(frames_table) / sizeof(frames_table[0]);
 
 const Graphics_Image *frames64_get_frame(uint32_t index) {
     uint32_t remaining = index;
